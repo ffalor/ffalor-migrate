@@ -1,0 +1,35 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Migrate Node to New Master.",
+  "parameters": {
+    "server": {
+      "description": "Specifies the new puppet master server to migrate to.",
+      "type": "String"
+    },
+    "ca_server": {
+      "description": "Specifies the new puppet master ca_server to migrate to. Don't provide a value if you don't use a CA Server Default: None",
+      "type": "Optional[String]"
+    },
+    "port": {
+      "description": "Specifies the puppet master port to check. Default: 8140",
+      "type": "Integer",
+      "default": "8140"
+    },
+    "section": {
+      "description": "Specifies the puppet.conf section to update. Default: agent",
+      "type": "Enum['main', 'agent']",
+      "default": "agent"
+    },
+    "verify_connection": {
+      "description": "Verify the connection to the new puppet master. Default: true",
+      "type": "Boolean",
+      "default": true
+    }
+  },
+  "implementations": [
+    {
+      "name": "init.rb"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+FROM ghcr.io/ffalor/puppet:main
