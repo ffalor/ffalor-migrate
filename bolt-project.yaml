@@ -1,0 +1,5 @@
+---
+name: migrate
+modules:
+- puppetlabs/puppet_agent
+- puppetlabs/puppet_conf
