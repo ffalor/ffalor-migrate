@@ -32,7 +32,6 @@ plan migrate::upgrade_and_migrate (
   Optional[String] $install_options = 'REINSTALLMODE=\"amus\"',
   Optional[Boolean] $stop_service = false,
   Optional[Integer] $retry = 5,
-
 ) {
   $install_puppet_output = run_task('puppet_agent::install',
     $targets,
@@ -66,6 +65,5 @@ plan migrate::upgrade_and_migrate (
     'section' => $section,
     'verify_connection' => $verify_connection
   )
-
   return $migrate_output
 }
