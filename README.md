@@ -16,3 +16,5 @@ The module will perform the following actions:
 4. Set $server and $ca_server to new values.
 5. Run puppet agent using new settings.
 6. Restore $ssldir and original settings if error occurs.
+
+This module also provide a Puppet plan to upgrade puppet before migration. See `migrate::upgrade_and_migrate` for more information.
