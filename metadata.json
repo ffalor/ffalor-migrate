@@ -7,6 +7,12 @@
   "source": "https://github.com/ffalor/ffalor-migrate",
   "project_page": "https://github.com/ffalor/ffalor-migrate",
   "issues_url": "https://github.com/ffalor/ffalor-migrate/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-puppet_agent",
+      "version_requirement": ">= 4.7.0 <= 4.8.0"
+    }
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "CentOS",
