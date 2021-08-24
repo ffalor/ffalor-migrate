@@ -11,36 +11,40 @@ require 'fileutils'
 # Copied fully from https://github.com/puppetlabs/puppetlabs-puppet_conf/blob/main/tasks/init.rb
 # Modified a little, and new functions added
 def puppet_cmd
-	if Gem.win_platform?
-		require 'win32/registry'
-		installed_dir =
-		begin
-			Win32::Registry::HKEY_LOCAL_MACHINE.open('SOFTWARE\Puppet Labs\Puppet') do |reg|
-				# rubocop:disable Style/RescueModifier
-				# Rescue missing key
-				dir = reg['RememberedInstallDir64'] rescue ''
-				# Both keys may exist, make sure the dir exists
-				break dir if File.exist?(dir)
-								# Rescue missing key
-				reg['RememberedInstallDir'] rescue ''
-				# rubocop:enable Style/RescueModifier
-			end
-		rescue Win32::Registry::Error
-			# Rescue missing registry path
-			''
-		end
-				puppet =
-		if installed_dir.empty?
-			''
-		else
-			File.join(installed_dir, 'bin', 'puppet.bat')
-		end
-	else
-		puppet = '/opt/puppetlabs/bin/puppet'
-	end
-		# Fall back to PATH lookup if puppet-agent isn't installed
-	puppet = 'puppet' unless File.exist?(puppet)
-		puppet
+  if Gem.win_platform?
+    require 'win32/registry'
+    installed_dir =
+      begin
+        Win32::Registry::HKEY_LOCAL_MACHINE.open('SOFTWARE\Puppet Labs\Puppet') do |reg|
+          # rubocop:disable Style/RescueModifier
+          # Rescue missing key
+          dir = reg['RememberedInstallDir64'] rescue ''
+          # Both keys may exist, make sure the dir exists
+          break dir if File.exist?(dir)
+
+          # Rescue missing key
+          reg['RememberedInstallDir'] rescue ''
+          # rubocop:enable Style/RescueModifier
+        end
+      rescue Win32::Registry::Error
+        # Rescue missing registry path
+        ''
+      end
+
+    puppet =
+      if installed_dir.empty?
+        ''
+      else
+        File.join(installed_dir, 'bin', 'puppet.bat')
+      end
+  else
+    puppet = '/opt/puppetlabs/bin/puppet'
+  end
+
+  # Fall back to PATH lookup if puppet-agent isn't installed
+  puppet = 'puppet' unless File.exist?(puppet)
+
+  puppet
 end
 
 def set(setting, section, value)
