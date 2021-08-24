@@ -1,6 +1,6 @@
 {
   "name": "ffalor-migrate",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "author": "ffalor",
   "summary": "Puppet module to migrate Puppet Agents",
   "license": "Apache-2.0",
