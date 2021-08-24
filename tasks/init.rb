@@ -6,7 +6,10 @@
 require 'json'
 require 'puppet'
 require 'socket'
+require 'open3'
 require 'fileutils'
+
+result = {}
 
 # Copied fully from https://github.com/puppetlabs/puppetlabs-puppet_conf/blob/main/tasks/init.rb
 # Modified a little, and new functions added
@@ -123,8 +126,6 @@ begin
     rollback_complete = false
 
     ssl_dir = config('ssldir')
-
-    result = {}
 
     if verify_connection
         server_test = test_connection(server, port)
